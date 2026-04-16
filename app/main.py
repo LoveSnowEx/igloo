@@ -1,8 +1,20 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from granian import Granian
+from granian.constants import Interfaces
 
-app = FastAPI()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    from app.db.base import create_db_and_tables
+
+    create_db_and_tables()
+    yield
+
+
+app = FastAPI(lifespan=lifespan)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
@@ -12,5 +24,5 @@ async def root():
 
 
 if __name__ == "__main__":
-    server = Granian("main:app")
+    server = Granian("main:app", interface=Interfaces.ASGI)
     server.serve()
