@@ -42,7 +42,7 @@
             modules = [
               {
                 # https://devenv.sh/reference/options/
-                packages = [ ];
+                packages = with pkgs; [ agent-browser ];
 
                 languages = {
                   python = {
