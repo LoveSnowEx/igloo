@@ -26,4 +26,4 @@ async def welcome(request: Request):
             request=request,
             name="partials/_welcome.html",
         )
-    return RedirectResponse(url="/web/", status_code=302)
+    return RedirectResponse(url="/", status_code=302)

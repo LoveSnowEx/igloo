@@ -2,7 +2,6 @@ from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
 
@@ -82,9 +81,3 @@ app.include_router(crystal_page_router)
 async def health_check() -> dict[str, str]:
     """Health check endpoint for monitoring and load balancers."""
     return {"status": "healthy"}
-
-
-@app.get("/", tags=["Web"])
-async def root():
-    """Redirect root to the web interface."""
-    return RedirectResponse(url="/web/")
