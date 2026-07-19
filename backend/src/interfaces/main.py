@@ -10,8 +10,10 @@ from ..infrastructure.app_factory import create_application, lifespan_factory
 from ..infrastructure.config.settings import get_settings
 from ..infrastructure.security import validate_production_security
 from ..interfaces.api import router
+from ..modules.crystal_of_atlan.routes import router as crystal_router
 from .admin.initialize import create_admin_interface
 from .web import web_router
+from .web.routes.crystal_of_atlan import router as crystal_page_router
 
 settings = get_settings()
 
@@ -72,6 +74,8 @@ create_admin_interface(app)
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 app.include_router(web_router)
+app.include_router(crystal_router)
+app.include_router(crystal_page_router)
 
 
 @app.get("/health", tags=["System"])
