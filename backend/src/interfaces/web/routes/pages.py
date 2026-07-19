@@ -3,8 +3,7 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 
-from ..deps import is_htmx_request
-from ._templates import templates
+from ..deps import is_htmx_request, templates
 
 router = APIRouter()
 

@@ -3,7 +3,7 @@
 from fastapi import Request
 from fastapi.templating import Jinja2Templates
 
-from .routes._templates import templates
+templates = Jinja2Templates(directory="templates")
 
 
 def is_htmx_request(request: Request) -> bool:
