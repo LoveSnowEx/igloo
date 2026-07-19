@@ -18,8 +18,8 @@ async def index(request: Request) -> HTMLResponse:
     )
 
 
-@router.get("/welcome", response_class=HTMLResponse)
-async def welcome(request: Request) -> HTMLResponse | RedirectResponse:
+@router.get("/welcome", response_class=HTMLResponse, response_model=None)
+async def welcome(request: Request):
     """HTMX partial — returns a welcome fragment."""
     if is_htmx_request(request):
         return templates.TemplateResponse(
