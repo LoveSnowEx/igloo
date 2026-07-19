@@ -21,14 +21,14 @@ MAX_IMPORT_BYTES = 1_048_576
 CATALYST_OPTIONS = [(ct.value, CATALYST_LABELS[ct]) for ct in CatalystType]
 
 
-@router.get("/crystal-of-atlan", response_class=HTMLResponse)
+@router.get("/crystal-of-atlan/enhance", response_class=HTMLResponse)
 async def page(request: Request) -> HTMLResponse:
     """Render the enhancement calculator page."""
     state = EnhanceState(current_level=10, progress={})
     return _render_page(request, state)
 
 
-@router.post("/crystal-of-atlan")
+@router.post("/crystal-of-atlan/enhance")
 async def page_action(request: Request):
     """Handle page actions (calculate, record, import/export)."""
     form = await request.form()

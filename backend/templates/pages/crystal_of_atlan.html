@@ -474,7 +474,7 @@
         </section>
     </form>
 
-    <form method="post" action="/crystal-of-atlan">
+    <form method="post" action="/crystal-of-atlan/enhance">
         <input type="hidden" name="state_json" id="record-state-json" value='{{ state_json }}'>
         <input type="hidden" name="catalyst" id="record-catalyst" value="{{ selected_catalyst }}">
         <section>
@@ -488,13 +488,13 @@
 
     <section>
         <h2>匯入 / 匯出</h2>
-        <form method="post" action="/crystal-of-atlan" style="display: inline;">
+        <form method="post" action="/crystal-of-atlan/enhance" style="display: inline;">
             <input type="hidden" name="state_json" id="export-state-json" value='{{ state_json }}'>
             <input type="hidden" name="catalyst" id="export-catalyst" value="{{ selected_catalyst }}">
             <button type="submit" name="action" value="export"
                     class="btn btn-secondary">下載 JSON</button>
         </form>
-        <form method="post" action="/crystal-of-atlan"
+        <form method="post" action="/crystal-of-atlan/enhance"
               enctype="multipart/form-data" style="display: inline;">
             <input type="hidden" name="state_json" id="import-state-json" value='{{ state_json }}'>
             <input type="hidden" name="catalyst" id="import-catalyst" value="{{ selected_catalyst }}">
