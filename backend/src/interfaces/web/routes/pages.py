@@ -3,8 +3,8 @@
 from fastapi import APIRouter, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 
-from .. import templates
 from ..deps import is_htmx_request
+from ._templates import templates
 
 router = APIRouter()
 
@@ -13,11 +13,9 @@ router = APIRouter()
 async def index(request: Request) -> HTMLResponse:
     """Render the home page."""
     return templates.TemplateResponse(
-        "pages/index.html",
-        {
-            "request": request,
-            "csrf_token": request.cookies.get("csrf_token", ""),
-        },
+        request=request,
+        name="pages/index.html",
+        context={"csrf_token": request.cookies.get("csrf_token", "")},
     )
 
 
@@ -26,7 +24,7 @@ async def welcome(request: Request) -> HTMLResponse:
     """HTMX partial — returns a welcome fragment."""
     if is_htmx_request(request):
         return templates.TemplateResponse(
-            "partials/_welcome.html",
-            {"request": request},
+            request=request,
+            name="partials/_welcome.html",
         )
-    return RedirectResponse(url="/", status_code=302)
+    return RedirectResponse(url="/web/", status_code=302)

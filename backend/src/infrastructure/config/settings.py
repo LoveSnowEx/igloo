@@ -13,6 +13,7 @@ current_file_dir = os.path.dirname(os.path.realpath(__file__))
 project_root = os.path.abspath(os.path.join(current_file_dir, "..", "..", "..", ".."))
 
 env_paths = [
+    os.path.join(project_root, "backend", ".env"),
     "/app/.env",
     os.path.join(project_root, ".env"),
     "/.env",

@@ -19,7 +19,7 @@
 name = "igloo-workspace"
 version = "0"
 description = "Workspace root — see backend/ and cli/ for actual packages."
-requires-python = ">=3.11"
+requires-python = ">=3.13"
 
 [tool.uv.workspace]
 members = ["backend", "cli"]

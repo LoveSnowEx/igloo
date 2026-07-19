@@ -78,3 +78,10 @@ app.include_router(web_router)
 async def health_check() -> dict[str, str]:
     """Health check endpoint for monitoring and load balancers."""
     return {"status": "healthy"}
+
+
+@app.get("/", tags=["Web"])
+async def root():
+    """Redirect root to the web interface."""
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url="/web/")

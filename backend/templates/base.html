@@ -1,42 +1,52 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-TW">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="csrf-token" content="{{ csrf_token }}" />
     <title>{% block title %}igloo{% endblock %}</title>
     <script src="/static/js/htmx.min.js"></script>
     <script defer src="/static/js/alpine.js"></script>
-    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/app.css" />
     <script>
-        document.body.addEventListener('htmx:configRequest', (event) => {
-            const csrfMeta = document.querySelector('meta[name="csrf-token"]');
-            if (csrfMeta) {
-                event.detail.headers['X-CSRF-Token'] = csrfMeta.content;
-            }
-        });
+      document.body.addEventListener("htmx:configRequest", (event) => {
+        const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+        if (csrfMeta) {
+          event.detail.headers["X-CSRF-Token"] = csrfMeta.content;
+        }
+      });
     </script>
-</head>
-<body class="min-h-screen bg-gray-50">
+  </head>
+  <body class="min-h-screen bg-gray-50">
     <nav class="bg-white shadow-sm border-b" x-data="{ mobileOpen: false }">
-        <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
-            <a href="/" class="text-lg font-bold text-indigo-600">igloo</a>
-            <button @click="mobileOpen = !mobileOpen" class="md:hidden text-gray-600">
-                <span x-show="!mobileOpen">☰</span>
-                <span x-show="mobileOpen">✕</span>
-            </button>
-            <div class="hidden md:flex items-center gap-4" :class="{ 'hidden': !mobileOpen, 'flex': mobileOpen }">
-                <a href="/" class="text-gray-600 hover:text-indigo-600">Home</a>
-                <a href="/docs" class="text-gray-600 hover:text-indigo-600">API Docs</a>
-                <a href="/admin" class="text-gray-600 hover:text-indigo-600">Admin</a>
-            </div>
+      <div
+        class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between"
+      >
+        <a href="/" class="text-lg font-bold text-indigo-600">igloo</a>
+        <button
+          @click="mobileOpen = !mobileOpen"
+          class="md:hidden text-gray-600"
+        >
+          <span x-show="!mobileOpen">☰</span>
+          <span x-show="mobileOpen">✕</span>
+        </button>
+        <div
+          class="hidden md:flex items-center gap-4"
+          :class="{ 'hidden': !mobileOpen, 'flex': mobileOpen }"
+        >
+          <a href="/" class="text-gray-600 hover:text-indigo-600">Home</a>
+          <a href="/docs" class="text-gray-600 hover:text-indigo-600"
+            >API Docs</a
+          >
+          <a href="/admin" class="text-gray-600 hover:text-indigo-600">Admin</a>
         </div>
+      </div>
     </nav>
     <main class="max-w-4xl mx-auto px-4 py-8">
-        {% block content %}{% endblock %}
+      {% block content %}{% endblock %}
     </main>
     <footer class="text-center py-6 text-gray-400 text-sm">
-        igloo · built with Fastro + HTMX + Alpine.js
+      igloo · built with Fastro + HTMX + Alpine.js
     </footer>
-</body>
+  </body>
 </html>
