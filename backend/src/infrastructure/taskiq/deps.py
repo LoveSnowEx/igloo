@@ -21,7 +21,7 @@ taskiq_engine = create_async_engine(
 taskiq_session_factory = async_sessionmaker(bind=taskiq_engine, class_=AsyncSession, expire_on_commit=False)
 
 
-async def get_db_session() -> AsyncGenerator[AsyncSession, None]:
+async def get_db_session() -> AsyncGenerator[AsyncSession]:
     """Get a database session for taskiq tasks.
 
     Provides a database session with proper lifecycle management for

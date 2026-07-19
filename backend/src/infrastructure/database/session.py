@@ -57,7 +57,7 @@ class Base(DeclarativeBase, MappedAsDataclass):
     pass
 
 
-async def async_session() -> AsyncGenerator[AsyncSession, None]:
+async def async_session() -> AsyncGenerator[AsyncSession]:
     """Dependency for database session management with proper lifecycle.
 
     This function provides an async database session for use in FastAPI

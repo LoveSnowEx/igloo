@@ -47,7 +47,7 @@ def lifespan_factory(
     """Factory to create a lifespan async context manager for a FastAPI app."""
 
     @asynccontextmanager
-    async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
+    async def lifespan(app: FastAPI) -> AsyncGenerator[None]:
         initialization_complete = Event()
         app.state.initialization_complete = initialization_complete
 

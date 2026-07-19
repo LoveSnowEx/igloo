@@ -2,6 +2,7 @@ from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.sessions import SessionMiddleware
 
@@ -10,12 +11,13 @@ from ..infrastructure.config.settings import get_settings
 from ..infrastructure.security import validate_production_security
 from ..interfaces.api import router
 from .admin.initialize import create_admin_interface
+from .web import web_router
 
 settings = get_settings()
 
 
 @asynccontextmanager
-async def lifespan_with_security(app: FastAPI) -> AsyncGenerator[None, None]:
+async def lifespan_with_security(app: FastAPI) -> AsyncGenerator[None]:
     """Custom lifespan that includes security validation."""
     if settings.PRODUCTION_SECURITY_VALIDATION_ENABLED:
         validate_production_security(settings)
@@ -69,8 +71,6 @@ create_admin_interface(app)
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-from .web import web_router
-
 app.include_router(web_router)
 
 
@@ -83,5 +83,4 @@ async def health_check() -> dict[str, str]:
 @app.get("/", tags=["Web"])
 async def root():
     """Redirect root to the web interface."""
-    from fastapi.responses import RedirectResponse
     return RedirectResponse(url="/web/")
