@@ -1,7 +1,7 @@
 # Workspace root.
 #
 # This file exists so `uv` recognizes the repo as a workspace and can resolve
-# both the `backend/` (deployable application) and `cli/` (developer/operator
+# both the `app/` (deployable application) and `cli/` (developer/operator
 # tool) packages from a single venv. It is NOT a deployable package itself —
 # nothing here ships to production.
 #
@@ -9,7 +9,7 @@
 #
 #     uv sync             # syncs the workspace (one venv shared by all members)
 #     uv run bp ...       # runs the CLI from cli/, accessible from any cwd
-#     uv run pytest       # runs the backend test suite
+#     uv run pytest       # runs the app test suite
 #
 # To install `bp` machine-wide so it works outside this repo:
 #
@@ -18,8 +18,8 @@
 [project]
 name = "igloo-workspace"
 version = "0"
-description = "Workspace root — see backend/ and cli/ for actual packages."
+description = "Workspace root — see app/ and cli/ for actual packages."
 requires-python = ">=3.13"
 
 [tool.uv.workspace]
-members = ["backend", "cli"]
+members = ["app", "cli"]

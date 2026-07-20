@@ -12,7 +12,7 @@ Built on [Fastro](https://github.com/benavlabs/FastAPI-boilerplate) — FastAPI 
 ## Development
 
 ```bash
-cd backend
+cd app
 cp .env.example .env
 uv sync --extra dev
 uv run fastapi dev src/interfaces/main.py
