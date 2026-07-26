@@ -1,44 +1,28 @@
 # igloo
 
-## Features
+Built on [Fastro](https://github.com/benavlabs/FastAPI-boilerplate) — FastAPI + HTMX + Alpine.js + Jinja2.
 
+## igloo-specific features
 
-| Feature                                 | Docs                                                                 |
-| --------------------------------------- | -------------------------------------------------------------------- |
-| Crystal of Atlan Enhancement Calculator | [docs/crystal_of_atlan/enhance.md](docs/crystal_of_atlan/enhance.md) |
-
+| Feature | URL |
+|---------|-----|
+| Crystal of Atlan Enhancement Calculator | `/crystal-of-atlan/enhance` |
+| HTMX + Alpine.js Homepage | `/` |
 
 ## Development
 
-Install dependencies:
-
 ```bash
-uv sync
+cd app
+cp .env.example .env
+uv sync --extra dev
+uv run fastapi dev src/interfaces/main.py
 ```
 
-Start dev server:
+**Toolchain**: devenv + direnv + uv + ruff + ty
 
-```bash
-uv run python -m app.main
-```
+---
 
-Run tests:
-
-```bash
-uv run pytest -v
-```
-
-Lint &amp; format:
-
-```bash
-uv run ruff check .          # lint
-uv run ruff check --fix .    # auto-fix
-uv run ruff format .         # format
-```
-
-Type check:
-
-```bash
-uv run ty check .
-```
-
+<h1 align="center">Fastro · The Benav Labs FastAPI Boilerplate</h1>
+<p align="center" markdown=1>
+  <i><b>Batteries-included FastAPI starter</b> - vertical-slice modules, swappable infrastructure, plugin-ready CLI.</i>
+</p>
